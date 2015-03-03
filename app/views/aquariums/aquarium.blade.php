@@ -155,7 +155,7 @@
 
 		function displayLogs(data, status, jqXHR)
 		{
-			if(data.length == 0)
+			if(data.data.length == 0)
 				$("#logs").append("<tr><td colspan='2'>No Logs Found</td></tr>");
 			else
 			{
