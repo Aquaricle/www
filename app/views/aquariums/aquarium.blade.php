@@ -103,14 +103,7 @@
 @endif
 
 
-<h3>Latest Logs (Last {{ $lastDays}} Days)</h3>
-
-<table id="logs">
-	<tr><th class="logDate">Date</th><th>Summary</th></tr>
-</table>
-
-<br />
-
+@include('aquariumlogs.logsummary')
 
 {{ link_to_route('aquariums.logs.create', 'Log New Entry', array($aquarium->aquariumID)) }}
 
@@ -119,10 +112,10 @@
 @section('footer')
 	<script type="text/javascript">
 		$.ajax({
-		url: "/api/aquarium/{{ $aquariumID }}/temperature",
-		success: function( data ) {
-		$( "#temperature" ).html( data );
-		}
+			url: "/api/aquarium/{{ $aquariumID }}/temperature",
+			success: function( data ) {
+				$( "#temperature" ).html( data );
+			}
 		});
 
 
@@ -153,26 +146,6 @@
 			}
 		}
 
-		function displayLogs(data, status, jqXHR)
-		{
-			if(data.data.length == 0)
-				$("#logs").append("<tr><td colspan='2'>No Logs Found</td></tr>");
-			else
-			{
-				$.each(data.data, function()
-				{
-					$("#logs").append(
-						"<tr><td><a class='logs' href='/aquarium/{{ $aquariumID }}/log/" + this.aquariumLogID + "'>" + this.logDate + "</a>" +
-						"</td><td>" + this.summary + "</td></tr>");
-				});
-			}
-		}
-
-		function errorCallback(jqXHR, status)
-		{
-				alert(status);
-		}
-
 		jQuery.ajax({
 		    type: "GET",
 		    url: "/api/v1/aquarium/{{ $aquariumID }}",
@@ -191,15 +164,7 @@
 				error: errorCallback
 		});
 
-		jQuery.ajax({
-				type: "GET",
-				url: "/api/v1/aquarium/{{ $aquariumID }}/logs",
-				contentType: "application/json",
-				dataType: "json",
-				success: displayLogs,
-				error: errorCallback
-		});
-
-
 	</script>
+
+
 @stop

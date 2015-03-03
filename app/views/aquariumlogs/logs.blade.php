@@ -9,5 +9,4 @@
 
 {{ link_to_route('aquariums.show', 'Go Back', array($aquariumID)) }}
 
-
 @stop

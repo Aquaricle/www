@@ -4,6 +4,7 @@
 <title>Aquaricle</title>
 <link rel="stylesheet" type="text/css" media="all" href="/static/style.css" />
 <script src="/js/vendor/jquery-2.1.3.min.js"></script>
+<script src="/js/global.js"></script>
 </head>
 
 <body>
